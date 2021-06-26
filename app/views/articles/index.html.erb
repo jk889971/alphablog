@@ -9,7 +9,7 @@
       <% @article.each do |article| %>
         <div class="card bg-dark shadow rounded">
           <div class="card-header text-white">
-            Name
+            <%= article.user.username %>
             <div class="text-muted text-right">
               <small>Created <%= time_ago_in_words(article.created_at) %> ago</small>
             </div>
