@@ -19,7 +19,7 @@
         </div>
 
         <div class="text-center mt-4 mb-4">
-          <%= f.submit class: "btn btn-outline-success text-center" %>
+          <%= f.submit(@article.new_record? ? "Create" : "Update", class: "btn btn-outline-success text-center") %>
           <%= link_to 'Cancel', articles_path, class: "btn btn-outline-danger text-center" %>
         </div>
         </div>
