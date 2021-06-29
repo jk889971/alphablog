@@ -1,3 +1,75 @@
-<h1 class="mt-4 text-center text-white">Edit Profile</h1>
+<h1 class="mt-4 text-center text-white">Profile</h1>
 
-<%= render 'form' %>
+<div class="container mb-5">
+
+  <%= render 'shared/errors', obj: @user %>
+
+  <div class="row mt-4">
+    <div class="col-3">
+      <ul class="nav nav-pills flex-column bg-dark shadow rounded" style="height: 19.6rem;">
+        <li class="nav-item">
+          <%= link_to "Profile", user_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Settings</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-9">
+      <%= form_with(model: @user, class: "shadow p-3 bg-dark rounded", local: true) do |f| %>
+        <div class="container">
+          <h3 class="text-white text-center">Edit</h3>
+          <div class="row mt-4">
+            <%= f.label :username, class: "col-2 col-form-label text-white" %>
+            <div class="col-10">
+              <%= f.text_field :username, class: "form-control shadow rounded", placeholder: "Enter a username" %>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <%= f.label :email, class: "col-2 col-form-label text-white" %>
+            <div class="col-10">
+              <%= f.email_field :email, class: "form-control shadow rounded", placeholder: "Enter your email" %>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <%= f.label :password, class: "col-2 col-form-label text-white" %>
+            <div class="col-10">
+              <%= f.password_field :password, class: "form-control shadow rounded", placeholder: "Choose a password" %>
+            </div>
+          </div>
+
+          <div class="text-center mt-4">
+            <%= f.submit(@user.new_record? ? "Sign Up" : "Update", class: "btn btn-outline-success text-center") %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="mt-4">
+    <div class="row mt-2">
+      <div class="container">
+        <% @article.each do |article| %>
+          <div class="card bg-dark shadow rounded">
+            <div class="card-header text-white">
+              <%= article.user.username %>
+              <div class="text-muted text-right">
+                <small>Created <%= time_ago_in_words(article.created_at) %> ago</small>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-white"><%= article.title %></h5>
+              <p class="card-text text-white"><%= truncate(article.description, length: 100) %></p>
+              <%= link_to "View", article_path(article), class: "btn btn-outline-success" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</div>

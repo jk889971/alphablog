@@ -18,6 +18,7 @@
         </div>
         <div class="card-body">
           <div class="card-text"><%= simple_format(@article.description, class: "text-white") %></div>
+          <%= link_to "View Profile", user_path(@article.user), class: "btn btn-outline-success" %>
           <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-info" %>
           <a type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Delete

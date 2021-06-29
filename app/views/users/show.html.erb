@@ -1,7 +1,74 @@
-<h1 class="mt-4 text-center text-white"><%= @user.username %>'s Profile</h1>
+<h1 class="mt-4 text-center text-white">Profile</h1>
 
-<h1 class="mt-4 text-center text-white">Articles</h1>
+<div class="container mb-5">
 
-<div class="container mb-4">
-  <%= render 'articles/articles' %>
+  <div class="row mt-4">
+    <div class="col-3">
+      <ul class="nav nav-pills flex-column bg-dark shadow rounded" style="height: 19.6rem;">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Profile</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Settings", user_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-9">
+
+      <div class="card text-white bg-dark shadow rounded" style="height: 19.6rem;">
+        <div class="card-body">
+          <div class="container">
+            <fieldset disabled>
+              <div class="container">
+                <h3 class="text-center">Details</h3>
+                <div class="row mt-4">
+                  <label for="disabledTextInput" class="col-2 col-form-label text-white">Username</label>
+                  <div class="col-10">
+                    <input type="text" id="disabledTextInput" class="form-control shadow rounded" placeholder="<%= @user.username %>">
+                  </div>
+                </div>
+
+                <div class="row mt-4">
+                  <label for="disabledTextInput" class="col-2 col-form-label text-white">Email</label>
+                  <div class="col-10 mb-5">
+                    <input type="text" id="disabledTextInput" class="form-control shadow rounded" placeholder="<%= @user.email %>">
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <div class="container">
+              <div class="mt-4 mb-2 text-center">
+                <%= link_to 'Sign out', users_path, class: "btn btn-outline-danger" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <div class="row mt-2">
+      <div class="container">
+        <% @article.each do |article| %>
+          <div class="card bg-dark shadow rounded">
+            <div class="card-header text-white">
+              <%= article.user.username %>
+              <div class="text-muted text-right">
+                <small>Created <%= time_ago_in_words(article.created_at) %> ago</small>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-white"><%= article.title %></h5>
+              <p class="card-text text-white"><%= truncate(article.description, length: 100) %></p>
+              <%= link_to "View", article_path(article), class: "btn btn-outline-success" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
 </div>
