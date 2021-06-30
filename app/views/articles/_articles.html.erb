@@ -1,6 +1,9 @@
 <div class="row mt-2">
   <div class="col-9">
-    <% @article.each do |article| %>
+    <div class="flickr_pagination mb-3">
+      <%= will_paginate @articles, :container => false %>
+    </div>
+    <% @articles.each do |article| %>
       <div class="card bg-dark shadow rounded">
         <div class="card-header text-white">
           <%= article.user.username %>
@@ -15,8 +18,11 @@
         </div>
       </div>
     <% end %>
+    <div class="flickr_pagination mt-3 mb-4">
+      <%= will_paginate @articles, :container => false %>
+    </div>
   </div>
-  <div class="col-3">
+  <div class="col-3 mt-5">
     <div class="card text-white bg-dark shadow rounded">
       <div class="card-body">
         <h5 class="card-title">Categories(0)</h5>

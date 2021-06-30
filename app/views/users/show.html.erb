@@ -49,10 +49,14 @@
     </div>
   </div>
 
-  <div class="mt-4">
-    <div class="row mt-2">
-      <div class="container">
-        <% @article.each do |article| %>
+  <div class="row mt-4">
+      <div class="col-3">
+      </div>
+      <div class="col-9">
+        <div class="flickr_pagination mb-3 mt-3">
+          <%= will_paginate @articles, :container => false %>
+        </div>
+        <% @articles.each do |article| %>
           <div class="card bg-dark shadow rounded">
             <div class="card-header text-white">
               <%= article.user.username %>
@@ -67,8 +71,10 @@
             </div>
           </div>
         <% end %>
+        <div class="flickr_pagination mb-4 mt-3">
+          <%= will_paginate @articles, :container => false %>
+        </div>
       </div>
-    </div>
   </div>
 
 </div>
