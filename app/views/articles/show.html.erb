@@ -1,12 +1,12 @@
 <div class="container mb-4">
-    <div class="row">
-      <div class="col-9">
-        <h1 class="mt-4 text-center text-white"><%= @article.title %></h1>
-      </div>
-      <div class="col-3">
-        <h1 class="mt-4 text-center text-white"></h1>
-      </div>
+  <div class="row">
+    <div class="col-9">
+      <h1 class="mt-4 text-center text-white"><%= @article.title %></h1>
     </div>
+    <div class="col-3">
+      <h1 class="mt-4 text-center text-white"></h1>
+    </div>
+  </div>
   <div class="row mt-2">
     <div class="col-9">
       <div class="card bg-dark shadow rounded">
@@ -19,24 +19,24 @@
         <div class="card-body">
           <div class="card-text"><%= simple_format(@article.description, class: "text-white") %></div>
           <%= link_to "View Profile", user_path(@article.user), class: "btn btn-outline-success" %>
-          <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-info" %>
-          <a type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Delete
-          </a>
+          <% if logged_in? && @article.user == current_user %>
+            <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-info" %>
+            <a type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Delete
+            </a>
+          <% end %>
         </div>
       </div>
     </div>
-        <div class="col-3">
-          <div class="card text-white bg-dark shadow rounded">
-            <div class="card-body">
-              <h5 class="card-title">Comments(0)</h5>
-            </div>
-          </div>
+    <div class="col-3">
+      <div class="card text-white bg-dark shadow rounded">
+        <div class="card-body">
+          <h5 class="card-title">Comments(0)</h5>
         </div>
+      </div>
+    </div>
   </div>
 </div>
-
-<!-- Buttons -->
 
 
 <!-- Modal -->
