@@ -39,10 +39,9 @@
                 </div>
               </div>
             </fieldset>
-            <% if logged_in? && @user == current_user %>
+            <% if logged_in? && (@user == current_user || current_user.admin?) %>
               <div class="container">
                 <div class="mt-4 mb-2 text-center">
-                  <%= link_to 'Create Article', new_article_path, class: "btn btn-outline-success" %>
                   <a type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Delete Account
                   </a>
@@ -99,7 +98,7 @@
         <p>This action will also delete all the articles associated with this account</p>
       </div>
       <div class="modal-footer">
-        <%= link_to "Yes", user_path(current_user), method: :delete, class: "btn btn-outline-danger" %>
+        <%= link_to "Yes", user_path(@user), method: :delete, class: "btn btn-outline-danger" %>
         <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">No</button>
       </div>
     </div>
